@@ -1,4 +1,4 @@
-[
+export const stops =[
     {
         "stop_id": 0,
         "stop_name": "MİLLİ İRADE MEYDANI  K.YANYOL",
