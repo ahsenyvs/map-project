@@ -14,7 +14,9 @@ const Login = () => {
     if (!user || user.password !== password) {
       // reject(new Error("Please check your email and password"));
       return;
-    } else console.log("login");
+    } else {
+      window.location.href = "/map";
+    }
   };
 
   return (
