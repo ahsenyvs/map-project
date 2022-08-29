@@ -55,8 +55,11 @@ const Map = () => {
   };
   return (
     <div style={{ width: "100%", height: "90vh" }}>
-      <Button sx={{ margin: "10px" }} onClick={handleClick}>
-        Login Page
+      <Button
+        sx={{ margin: "10px", position: "absolute", right: "0" }}
+        onClick={handleClick}
+      >
+        Log Out
       </Button>
       <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}

@@ -10,10 +10,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [register, setRegister] = useState(false);
 
   const handleLogin = () => {
     const user = users.find((_user) => _user.email === email);
-    if (!user || user.password !== password) {
+    if (user.status === false) {
+      setRegister(true);
+    } else if (!user || user.password !== password) {
       setError(true);
       return;
     } else {
@@ -49,6 +52,12 @@ const Login = () => {
       {error && (
         <div className={Styles.error}>
           <p>Please check your email or password !</p>
+        </div>
+      )}
+
+      {register && (
+        <div className={Styles.error}>
+          <p>Please sign up !</p>
         </div>
       )}
     </Box>
