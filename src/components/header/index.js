@@ -22,7 +22,7 @@ export default function Navbar() {
             {/* <Link href='/'>DEMO Streaming</Link> */}
           </Typography>
 
-          <Button color='inherit'>Login</Button>
+          <Button color='inherit'>MAP</Button>
         </Toolbar>
       </AppBar>
     </Box>

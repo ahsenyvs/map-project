@@ -7,25 +7,14 @@ import {
 } from "react-google-maps";
 import { useState } from "react";
 import { stops } from "../../../dummy/stops";
-
-// const Markers = ({ places }) => {
-//   return places.map((place) => {
-//     return (
-//       <Marker
-//         key={place.stop_id}
-//         position={{ lat: place.stop_lat, lng: place.stop_lon }}
-//       />
-//     );
-//   });
-// };
+import { Button } from "@mui/material";
 
 const Maps = () => {
   const [selectedStop, setSelectedStop] = useState(null);
   return (
     <GoogleMap
-      //   style={{ width: "100%", height: "400px", margin: "auto" }}
       defaultZoom={4}
-      defaultCenter={{ lat: 45.4211, lng: -75.6903 }}
+      defaultCenter={{ lat: 40.762741, lng: 29.943461 }}
     >
       {stops.map((stop) => (
         <Marker
@@ -36,6 +25,23 @@ const Maps = () => {
           }}
         />
       ))}
+
+      {selectedStop && (
+        <InfoWindow
+          position={{ lat: selectedStop.stop_lat, lng: selectedStop.stop_lon }}
+          onCloseClick={() => {
+            setSelectedStop(null);
+          }}
+        >
+          <div>
+            <h2>{selectedStop.selectedStop.stop_name}</h2>
+            <p>{selectedStop.selectedStop.stop_desc}</p>
+            <p>{selectedStop.selectedStop.stop_code}</p>
+            <p>{selectedStop.selectedStop.stop_lat}</p>
+            <p>{selectedStop.selectedStop.stop_lon}</p>
+          </div>
+        </InfoWindow>
+      )}
     </GoogleMap>
   );
 };
@@ -43,8 +49,14 @@ const Maps = () => {
 const WrappedMap = withScriptjs(withGoogleMap(Maps));
 
 const Map = () => {
+  const handleClick = () => {
+    window.location.href = "/";
+  };
   return (
-    <div style={{ width: "100%", height: "400px" }}>
+    <div style={{ width: "100%", height: "90vh" }}>
+      <Button sx={{ margin: "10px" }} onClick={handleClick}>
+        Login Page
+      </Button>
       <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
         loadingElement={<div style={{ height: `100%` }} />}
@@ -52,7 +64,6 @@ const Map = () => {
         mapElement={<div style={{ height: `100%` }} />}
       />
     </div>
-    // <Maps />
   );
 };
 
