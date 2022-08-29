@@ -5,12 +5,13 @@ import {
   InfoWindow,
   withScriptjs,
 } from "react-google-maps";
-import { useState } from "react";
-import { stops } from "../../../dummy/stops";
+import { useContext, useState } from "react";
 import { Button } from "@mui/material";
+import StopContext from "../../../context/StopContext";
 
 const Maps = () => {
   const [selectedStop, setSelectedStop] = useState(null);
+  const { stops } = useContext(StopContext);
   return (
     <GoogleMap
       defaultZoom={4}

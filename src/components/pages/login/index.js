@@ -5,17 +5,14 @@ import { useState, useContext } from "react";
 import UserContext from "../../../context/UserContext";
 import Styles from "./index.module.scss";
 
-// import { users } from "../../../dummy/users";
-
 const Login = () => {
-  const [name, setName] = useState("");
+  const { users } = useContext(UserContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  const { users } = useContext(UserContext);
-  console.log(name, password);
 
   const handleLogin = () => {
-    const user = users.find((_user) => _user.name === name);
+    const user = users.find((_user) => _user.email === email);
     if (!user || user.password !== password) {
       setError(true);
       return;
@@ -34,9 +31,9 @@ const Login = () => {
       }}
     >
       <TextField
-        label='Name'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        label='Email'
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         sx={{ margin: "30px", width: "40vw" }}
       />
       <TextField
@@ -51,7 +48,7 @@ const Login = () => {
 
       {error && (
         <div className={Styles.error}>
-          <p>Please check your name or password !</p>
+          <p>Please check your email or password !</p>
         </div>
       )}
     </Box>
